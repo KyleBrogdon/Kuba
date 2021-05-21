@@ -51,7 +51,7 @@ class KubaGame:
 
     def get_captured(self, player_name):
         """Takes a player name and returns the number of red marbles captured by the player"""
-        if self._player_a == player_name:
+        if self._player_a == player_name:  # checks to see which player we are returning the value for
             return self._player_a_captured
         else:
             return self._player_b_captured
@@ -61,7 +61,7 @@ class KubaGame:
         either a red, black, white marble, or 'X' for no marble"""
         x = coordinates[0]
         y = coordinates[1]
-        return self._game_board[x][y]
+        return self._game_board[x][y]  # returns the value at the correct coordinates on the board
 
     def get_marble_count(self):
         """Iterates over the entire game board, counts the number of each color of marble, and
