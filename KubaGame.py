@@ -66,7 +66,15 @@ class KubaGame:
     def get_marble_count(self):
         """Iterates over the entire game board, counts the number of each color of marble, and
         returns a tuple consisting of white, black, red marbles left on the game board"""
-        W = 0
-        B = 0
-        R = 0
-        pass
+        W = 0  # number of white marbles
+        B = 0  # number of black marbles
+        R = 0  # number of red marbles
+        for x in range(0,7):
+            for y in range(0,7):  # iterates through entire 7x7 board
+                if self._game_board[x][y] == "W":  # if marble is white, increment white
+                    W += 1
+                if self._game_board[x][y] == "B":  # if marble is black, increment black
+                    B += 1
+                if self._game_board[x][y] == "R":  # if marble is red, increment red
+                    R += 1
+        return(W, B, R)  # returns the tuple of white, black, red marbles
