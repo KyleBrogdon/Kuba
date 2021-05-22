@@ -112,7 +112,7 @@ class KubaGame:
                     proposed_move[column] = "X"
                     for b in range(0, 7):
                         self._game_board[row][b] = proposed_move[b]
-                        self._current_roworcolumn = previous_board
+                    self._current_roworcolumn = previous_board
                     if self._player_a == playername:
                         if marble_getting_knocked_off == "R":  # check if the marble is red and will score points
                             self._player_a_captured += 1  # increment captured total
@@ -120,8 +120,8 @@ class KubaGame:
                                 self._game_winner = self._player_a
                             if self.possible_moves_checker(self._player_b) is False:  # check if this move leaves opponent with no valid moves and set winner
                                 self._game_winner = self._player_a
-                            self._current_turn = self._player_b  # set turn to other player
-                            return True
+                        self._current_turn = self._player_b  # set turn to other player
+                        return True
                     else:
                         if marble_getting_knocked_off == "R":  # check if the marble is red and will score points
                             self._player_b_captured += 1  # increment captured total
@@ -189,8 +189,8 @@ class KubaGame:
                                 self._game_winner = self._player_a
                             if self.possible_moves_checker(self._player_b) is False:  # check if this move leaves opponent with no valid moves and set winner
                                 self._game_winner = self._player_a
-                            self._current_turn = self._player_b  # set turn to other player
-                            return True
+                        self._current_turn = self._player_b  # set turn to other player
+                        return True
                     else:
                         if marble_getting_knocked_off == "R":  # check if the marble is red and will score points
                             self._player_b_captured += 1  # increment captured total
@@ -259,8 +259,8 @@ class KubaGame:
                             if self.possible_moves_checker(
                                     self._player_b) is False:  # check if this move leaves opponent with no valid moves and set winner
                                 self._game_winner = self._player_a
-                            self._current_turn = self._player_b  # set turn to other player
-                            return True
+                        self._current_turn = self._player_b  # set turn to other player
+                        return True
                     else:
                         if marble_getting_knocked_off == "R":  # check if the marble is red and will score points
                             self._player_b_captured += 1  # increment captured total
@@ -330,8 +330,8 @@ class KubaGame:
                             if self.possible_moves_checker(
                                     self._player_b) is False:  # check if this move leaves opponent with no valid moves and set winner
                                 self._game_winner = self._player_a
-                            self._current_turn = self._player_b  # set turn to other player
-                            return True
+                        self._current_turn = self._player_b  # set turn to other player
+                        return True
                     else:
                         if marble_getting_knocked_off == "R":  # check if the marble is red and will score points
                             self._player_b_captured += 1  # increment captured total
@@ -394,12 +394,13 @@ class KubaGame:
 # print(game.get_marble_count()) #returns (8,8,13)
 # print(game.get_captured('PlayerA')) #returns 0
 # game.get_current_turn() #returns 'PlayerB' because PlayerA has just played.
-# game.get_winner() #returns None
-# game.make_move('PlayerA', (6,5), 'F')
-# print(game.make_move('PlayerB', (1,6), 'F')) #Cannot make this move
-# print(game.make_move('PlayerA', (6,5), 'F'))
-# print(game.make_move('PlayerB', (5,0), 'L'))
+# print(game.get_winner()) #returns None
 # print(game.make_move('PlayerA', (5,6), 'L'))
+# print(game.make_move('PlayerB', (0,6), 'L'))
+# print(game.make_move('PlayerA', (5,5), 'L'))
+# print(game.make_move('PlayerB', (1,6), 'L'))
+# print(game.make_move('PlayerA', (5,4), 'L'))
+# print(game.get_marble_count()) #returns (8,7,13)
 # print(game.make_move('PlayerB', (4,0), 'L'))
 # print(game.make_move('PlayerA', (4,6), 'L'))
 # print(game.make_move('PlayerB', (3,0), 'L'))
