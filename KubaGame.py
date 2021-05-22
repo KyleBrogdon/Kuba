@@ -44,7 +44,7 @@ class KubaGame:
         then update the game board, check if the move resulted in a winner for the game, and then set
         the next turn to the other player"""
         if self._game_winner == None:
-            if validturnispossiblecode:
+            if playername is True:  # if valid turn is possible code goes here
                 pass
                 if self._current_turn == playername:
                     if coordinates[0] < 7 and coordinates[0] >= 0:  # if coordinates are on the game board
