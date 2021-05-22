@@ -187,8 +187,8 @@ class KubaGame:
                             self._player_a_captured += 1  # increment captured total
                             if self._player_a_captured == 7:  # Check if player has won the game and set winner
                                 self._game_winner = self._player_a
-                            if self.possible_moves_checker(self._player_b) is False:  # check if this move leaves opponent with no valid moves and set winner
-                                self._game_winner = self._player_a
+                        if self.possible_moves_checker(self._player_b) is False:  # check if this move leaves opponent with no valid moves and set winner
+                            self._game_winner = self._player_a
                         self._current_turn = self._player_b  # set turn to other player
                         return True
                     else:
@@ -196,8 +196,8 @@ class KubaGame:
                             self._player_b_captured += 1  # increment captured total
                             if self._player_b_captured == 7:  # Check if player has won the game and set winner
                                 self._game_winner = self._player_b
-                            if self.possible_moves_checker(self._player_a) is False: # check if this move leaves opponent with no valid moves and set winner
-                                self._game_winner = self._player_b
+                        if self.possible_moves_checker(self._player_a) is False: # check if this move leaves opponent with no valid moves and set winner
+                            self._game_winner = self._player_b
                         self._current_turn = self._player_a  # set turn to other player
                         return True
         return False  # not a valid move since the marble is blocked
@@ -388,23 +388,24 @@ class KubaGame:
         else:
             return self._player_b_color
 
-game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
-print(game.get_marble_count()) #returns (8,8,13)
+# game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
+# print(game.get_marble_count()) #returns (8,8,13)
 # print(game.get_captured('PlayerA')) #returns 0
 # game.get_current_turn() #returns 'PlayerB' because PlayerA has just played.
-print(game.get_winner()) #returns None
-print(game.make_move('PlayerA', (6,5), 'F'))
-print(game.get_marble_count()) #returns (8,7,13)
-print(game.make_move('PlayerB', (5,0), 'R'))
-print(game.get_marble_count()) #returns (8,7,13)
-print(game.make_move('PlayerA', (5,5), 'F'))
-print(game.get_marble_count()) #returns (8,7,13)
-print(game.make_move('PlayerB', (5,1), 'R'))
-print(game.get_marble_count()) #returns (8,7,13)
-print(game.make_move('PlayerA', (4,5), 'F'))
-print(game.get_marble_count()) #returns (8,7,13)
+# print(game.get_winner()) #returns None
+# print(game.make_move('PlayerA', (6,5), 'F'))
+# print(game.get_marble_count()) #returns (8,7,13)
+# print(game.make_move('PlayerB', (5,0), 'R'))
+# print(game.get_marble_count()) #returns (8,7,13)
+# print(game.make_move('PlayerA', (5,5), 'F'))
+# print(game.get_marble_count()) #returns (8,7,13)
+# print(game.make_move('PlayerB', (5,1), 'R'))
+# print(game.get_marble_count()) #returns (8,7,13)
+# print(game.make_move('PlayerA', (4,5), 'F'))
+# print(game.get_marble_count()) #returns (8,7,13)
 # print(game.make_move('PlayerB', (5,2), 'R'))
-# print(game.make_move('PlayerA', (3,5), 'F'))
+# print(game.make_move('PlayerA', (3,5), 'F')) # irrelevant
+# print(game.make_move('PlayerB', (5,3), 'R'))
 # print(game.get_marble_count()) #returns (8,7,13)
 # print(game.make_move('PlayerB', (5,3), 'R'))
 # print(game.make_move('PlayerA', (2,5), 'F'))
