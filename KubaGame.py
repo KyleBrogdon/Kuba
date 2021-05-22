@@ -139,7 +139,7 @@ class KubaGame:
         column = coordinates[1]
         previous_board = []
         if column == 0 or self.get_marble((row, column - 1)) == "X":  # if marble is on the edge of the board or the space behind marble is empty
-            for x in range(row, 7):
+            for x in range(0, 7):
                 temp_move = self.get_marble((row, x))
                 previous_board.append(temp_move)
             for i in range(column, 7):
@@ -318,7 +318,7 @@ class KubaGame:
                         increment += 1
                     proposed_move[row] = "X"
                     for b in range(0, 7):
-                        self._game_board[b][row] = proposed_move[b]
+                        self._game_board[b][column] = proposed_move[b]
                         self._current_roworcolumn = previous_board
                     if self._player_a == playername:
                         if marble_getting_knocked_off == "R":  # check if the marble is red and will score points
@@ -388,27 +388,32 @@ class KubaGame:
         else:
             return self._player_b_color
 
-# game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
-# print(game.get_marble_count()) #returns (8,8,13)
+game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
+print(game.get_marble_count()) #returns (8,8,13)
 # print(game.get_captured('PlayerA')) #returns 0
 # game.get_current_turn() #returns 'PlayerB' because PlayerA has just played.
-# print(game.get_winner()) #returns None
-# print(game.make_move('PlayerA', (5,6), 'L'))
-# print(game.make_move('PlayerB', (0,5), 'B'))
-# print(game.make_move('PlayerA', (5,5), 'L'))
-# print(game.make_move('PlayerB', (1,5), 'B'))
-# print(game.make_move('PlayerA', (5,4), 'L'))
+print(game.get_winner()) #returns None
+print(game.make_move('PlayerA', (6,5), 'F'))
+print(game.get_marble_count()) #returns (8,7,13)
+print(game.make_move('PlayerB', (5,0), 'R'))
+print(game.get_marble_count()) #returns (8,7,13)
+print(game.make_move('PlayerA', (5,5), 'F'))
+print(game.get_marble_count()) #returns (8,7,13)
+print(game.make_move('PlayerB', (5,1), 'R'))
+print(game.get_marble_count()) #returns (8,7,13)
+print(game.make_move('PlayerA', (4,5), 'F'))
+print(game.get_marble_count()) #returns (8,7,13)
+# print(game.make_move('PlayerB', (5,2), 'R'))
+# print(game.make_move('PlayerA', (3,5), 'F'))
 # print(game.get_marble_count()) #returns (8,7,13)
-# print(game.make_move('PlayerB', (2,5), 'B'))
-# print(game.make_move('PlayerA', (5,3), 'L'))
-# print(game.make_move('PlayerB', (3,5), 'B'))
-# print(game.make_move('PlayerA', (5,2), 'L'))
-# print(game.make_move('PlayerB', (4,5), 'B'))
-# print(game.make_move('PlayerB', (3,5), 'B'))
+# print(game.make_move('PlayerB', (5,3), 'R'))
+# print(game.make_move('PlayerA', (2,5), 'F'))
+# print(game.make_move('PlayerB', (5,4), 'R'))
+# print(game.get_marble_count()) #returns (8,7,13)
 # print(game.get_marble_count()) #returns (8,7,13)
 # print(game.get_captured('PlayerA'))
 # print(game.get_captured('PlayerB'))
-# print(game.make_move('PlayerB', (4,0), 'L'))
+# print(game.make_move('PlayerB', (4,0), ''))
 # print(game.make_move('PlayerA', (4,6), 'L'))
 # print(game.make_move('PlayerB', (3,0), 'L'))
 # game.get_marble((5,5)) #returns 'W'
