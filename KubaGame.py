@@ -301,12 +301,12 @@ class KubaGame:
                         if self.possible_moves_checker(self._player_b) is False:
                             self._game_winner = self._player_a
                         self._current_turn = self._player_b
-                        return
+                        return True
                     else:
                         if self.possible_moves_checker(self._player_a) is False:
                             self._game_winner = self._player_b
                         self._current_turn = self._player_a
-                        return
+                        return True
                 if i == 0:  # if there are marbles lined up till edge of the board and one will get pushed off by this move
                     marble_getting_knocked_off = previous_board[0]
                     if self.get_player_color(playername) == marble_getting_knocked_off:
@@ -331,7 +331,7 @@ class KubaGame:
                                     self._player_b) is False:  # check if this move leaves opponent with no valid moves and set winner
                                 self._game_winner = self._player_a
                             self._current_turn = self._player_b  # set turn to other player
-                            return
+                            return True
                     else:
                         if marble_getting_knocked_off == "R":  # check if the marble is red and will score points
                             self._player_b_captured += 1  # increment captured total
@@ -341,7 +341,7 @@ class KubaGame:
                                     self._player_a) is False:  # check if this move leaves opponent with no valid moves and set winner
                                 self._game_winner = self._player_b
                         self._current_turn = self._player_a  # set turn to other player
-                        return
+                        return True
         return False  # not a valid move since the marble is blocked
 
     def possible_moves_checker(self, playername):
