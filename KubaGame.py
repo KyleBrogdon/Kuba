@@ -59,17 +59,22 @@ class KubaGame:
                                     if x_coord == 6:  # if marble is on edge of board
                                         pass  # move code
                                     if self.get_marble((x_coord+1, y_coord)) == "X":  # if space behind marble is empty
-                                        proposed_move = []
+                                        for x in range(0, 7):
+                                            if self._previous_move != []:
+                                                self._previous_move = []
+                                            temp_move = self.get_marble((x, y_coord))
+                                            self._previous_move.append(temp_move)
                                         for i in range(x_coord, 0, -1):
                                            if self.get_marble((i, y_coord)) == "X":
-                                               counter = 1
-                                               for j in range(i, x_coord):
-                                                temp_variable = self.get_marble((j, y_coord))
-                                                proposed_move.append(temp_variable)
-                                                counter +=1
+                                                proposed_move = self._previous_move
+                                                proposed_move.pop()
+                                                proposed_move.append("X")
                                                 if proposed_move == self._previous_move:
                                                     return False  # ko rule violation
                                                 else:
+                                                    if self._previous_move   # if own marble getting knocked off
+                                                    if  # if red marble getting captured
+                                                    if  # if enemy marble knocked off
                                                     self._previous_move = proposed_move
                                                     self._game_board[j][y_coord] = self._game_board[i+counter][y_coord]
                                                     self._game_board[x_coord][y_coord] = "X"
