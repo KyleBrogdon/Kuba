@@ -586,34 +586,3 @@ class KubaGame:
             return self._player_a_color
         else:  # means we are referencing player b
             return self._player_b_color
-
-# game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
-# print(game.get_marble_count()) #returns (8,8,13)
-# print(game.get_captured('PlayerA')) #returns 0
-# game.get_current_turn() #returns 'PlayerB' because PlayerA has just played.
-# print(game.get_winner()) #returns None
-# print(game.make_move('PlayerA', (5,6), 'L'))
-# print(game.get_marble_count()) #returns (8,7,13)
-# print(game.make_move('PlayerB', (5,0), 'R'))
-# print(game.get_marble_count()) #returns (8,7,13)
-# print(game.make_move('PlayerA', (5,5), 'L'))
-# print(game.get_marble_count()) #returns (8,7,13)
-# print(game.make_move('PlayerB', (5,0), 'R'))
-# print(game.get_marble_count()) #returns (8,7,13)
-# print(game.make_move('PlayerA', (4,5), 'F'))
-# print(game.get_marble_count()) #returns (8,7,13)
-# print(game.make_move('PlayerB', (5,2), 'R'))
-# print(game.make_move('PlayerA', (3,5), 'F')) # irrelevant
-# print(game.make_move('PlayerB', (5,3), 'R'))
-# print(game.get_marble_count()) #returns (8,7,13)
-# print(game.make_move('PlayerB', (5,3), 'R'))
-# print(game.make_move('PlayerA', (2,5), 'F'))
-# print(game.make_move('PlayerB', (5,4), 'R'))
-# print(game.get_marble_count()) #returns (8,7,13)
-# print(game.get_marble_count()) #returns (8,7,13)
-# print(game.get_captured('PlayerA'))
-# print(game.get_captured('PlayerB'))
-# print(game.make_move('PlayerB', (4,0), ''))
-# print(game.make_move('PlayerA', (4,6), 'L'))
-# print(game.make_move('PlayerB', (3,0), 'L'))
-# game.get_marble((5,5)) #returns 'W'
