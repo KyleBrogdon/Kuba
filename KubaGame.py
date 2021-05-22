@@ -324,7 +324,7 @@ class KubaGame:
         else:
             return self._player_b_color
 
-game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
+# game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
 # print(game.get_marble_count()) #returns (8,8,13)
 # print(game.get_captured('PlayerA')) #returns 0
 # game.get_current_turn() #returns 'PlayerB' because PlayerA has just played.
