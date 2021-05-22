@@ -139,7 +139,7 @@ class KubaGame:
         column = coordinates[1]
         previous_board = []
         if column == 0 or self.get_marble((row, column - 1)) == "X":  # if marble is on the edge of the board or the space behind marble is empty
-            for x in range(0, 7):
+            for x in range(row, 7):
                 temp_move = self.get_marble((row, x))
                 previous_board.append(temp_move)
             for i in range(column, 7):
@@ -211,7 +211,7 @@ class KubaGame:
             for x in range(0, 7):
                 temp_move = self.get_marble((x, column))
                 previous_board.append(temp_move)
-            for i in range(0, 7):
+            for i in range(row, 7):
                 if self.get_marble((i, column)) == "X":
                     proposed_move = list(previous_board)
                     counter = 0
@@ -390,8 +390,8 @@ class KubaGame:
         else:
             return self._player_b_color
 
-# game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
-# print(game.get_marble_count()) #returns (8,8,13)
+game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
+print(game.get_marble_count()) #returns (8,8,13)
 # print(game.get_captured('PlayerA')) #returns 0
 # game.get_current_turn() #returns 'PlayerB' because PlayerA has just played.
 # game.get_winner() #returns None
