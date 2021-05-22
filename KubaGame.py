@@ -237,7 +237,7 @@ class KubaGame:
                         self._current_turn = self._player_a
                         return True
                 if i == 6:  # if there are marbles lined up till edge of the board and one will get pushed off by this move
-                    marble_getting_knocked_off = previous_board[0]
+                    marble_getting_knocked_off = previous_board[6]
                     if self.get_player_color(playername) == marble_getting_knocked_off:
                         return False  # player cannot knock off their own marble
                     proposed_move = list(previous_board)
