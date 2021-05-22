@@ -32,6 +32,7 @@ class KubaGame:
         self._game_winner = None  # initializes game winner to None since game has not started
         self._player_a_captured = 0  # sets each player's captured red marble count to 0
         self._player_b_captured = 0  # sets each player's captured red marble count to 0
+        self._previous_move = []
 
     def get_current_turn(self):
         """Returns the player whose turn it is to make a move"""
@@ -47,29 +48,66 @@ class KubaGame:
             if playername is True:  # if valid turn is possible code goes here
                 pass
                 if self._current_turn == playername:
-                    if coordinates[0] < 7 and coordinates[0] >= 0:  # if coordinates are on the game board
-                        if coordinates[1] < 7 and coordinates[1] >= 0: # if coordinates are on the game board
-                            x = coordinates[0]
-                            y = coordinates[1]
+                    if coordinates[0] < 7 and coordinates[0] >= 0:  # check if coordinates are on the game board
+                        if coordinates[1] < 7 and coordinates[1] >= 0: # check if coordinates are on the game board
+                            x_coord = coordinates[0]
+                            y_coord = coordinates[1]
                             player_color = self.get_player_color(playername)
                             marble_being_moved = self.get_marble(coordinates)
                             if player_color == marble_being_moved:  # if player is moving his own color marble
                                 if direction == "L":
-                                    pass
+                                    if x_coord == 6:  # if marble is on edge of board
+                                        pass  # move code
+                                    if self.get_marble((x_coord+1, y_coord)) == "X":  # if space behind marble is empty
+                                        proposed_move = []
+                                        for i in range(x_coord, 0, -1):
+                                           if self.get_marble((i, y_coord)) == "X":
+                                               counter = 1
+                                               for j in range(i, x_coord):
+                                                temp_variable = self.get_marble((j, y_coord))
+                                                proposed_move.append(temp_variable)
+                                                counter +=1
+                                                if proposed_move == self._previous_move:
+                                                    return False  # ko rule violation
+                                                else:
+                                                    self._previous_move = proposed_move
+                                                    self._game_board[j][y_coord] = self._game_board[i+counter][y_coord]
+                                                    self._game_board[x_coord][y_coord] = "X"
+                                    else:  # not a valid move because space behind marble is not empty
+                                        return False
                                 if direction == "R":
-                                    pass
+                                    if x_coord == 0:  # if marble is on edge of board
+                                        pass  # move code
+                                    if self.get_marble((x_coord - 1, y_coord)) == "X":  # if space behind marble is empty
+                                        pass  # move code
+                                    else:  # not a valid move because space behind marble is not empty
+                                        return False
                                 if direction == "B":
-                                    pass
+                                    if y_coord == 0:  # if marble is on edge of board
+                                        pass  # move code
+                                    if self.get_marble((x_coord, y_coord - 1)) == "X":  # if space behind marble is empty
+                                        pass  # move code
+                                    else:  # not a valid move because space behind marble is not empty
+                                        return False
                                 if direction == "F":
-                                    pass
+                                    if y_coord == 6:  # if marble is on edge of board
+                                        pass  # move code
+                                    if self.get_marble((x_coord, y_coord + 1)) == "X":  # if space behind marble is empty
+                                        pass  # move code
+                                    else:  # not a valid move because space behind marble is not empty
+                                        return False
+                                return False  # invalid direction was passed
+                            return False  # player is not moving his own color marble
+                        return False  # coordinates are off the game board
+                    return False  # coordinates are off the game board
                 return False  # not the correct player's turn
-            return False  # valid turn is not possible
+            if self._player_a == playername:
+                self._game_winner = self._player_b
+                return False # valid turn by player A is not possible, so player B is the winner
+            else:
+                self._game_winner = self._player_a
+                return False  # valid turn is not possible by player B, so Player A is the winner
         return False  # someone has already won the game
-
-
-
-
-
 
     def get_winner(self):
         """Returns the current status of the winner of the game"""
@@ -111,3 +149,12 @@ class KubaGame:
             return self._player_a_color
         else:
             return self._player_b_color
+
+# game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
+# print(game.get_marble_count()) #returns (8,8,13)
+# print(game.get_captured('PlayerA')) #returns 0
+# game.get_current_turn() #returns 'PlayerB' because PlayerA has just played.
+# game.get_winner() #returns None
+# game.make_move('PlayerA', (6,5), 'F')
+# game.make_move('PlayerA', (6,5), 'L') #Cannot make this move
+# game.get_marble((5,5)) #returns 'W'
