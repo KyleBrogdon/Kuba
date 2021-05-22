@@ -249,16 +249,15 @@ class KubaGame:
                         increment += 1
                     proposed_move[row] = "X"
                     for b in range(0, 7):
-                        self._game_board[b][row] = proposed_move[b]
+                        self._game_board[b][column] = proposed_move[b]
                         self._current_roworcolumn = previous_board
                     if self._player_a == playername:
                         if marble_getting_knocked_off == "R":  # check if the marble is red and will score points
                             self._player_a_captured += 1  # increment captured total
                             if self._player_a_captured == 7:  # Check if player has won the game and set winner
                                 self._game_winner = self._player_a
-                            if self.possible_moves_checker(
-                                    self._player_b) is False:  # check if this move leaves opponent with no valid moves and set winner
-                                self._game_winner = self._player_a
+                        if self.possible_moves_checker(self._player_b) is False:  # check if this move leaves opponent with no valid moves and set winner
+                            self._game_winner = self._player_a
                         self._current_turn = self._player_b  # set turn to other player
                         return True
                     else:
@@ -266,9 +265,8 @@ class KubaGame:
                             self._player_b_captured += 1  # increment captured total
                             if self._player_b_captured == 7:  # Check if player has won the game and set winner
                                 self._game_winner = self._player_b
-                            if self.possible_moves_checker(
-                                    self._player_a) is False:  # check if this move leaves opponent with no valid moves and set winner
-                                self._game_winner = self._player_b
+                        if self.possible_moves_checker(self._player_a) is False:  # check if this move leaves opponent with no valid moves and set winner
+                            self._game_winner = self._player_b
                         self._current_turn = self._player_a  # set turn to other player
                         return True
         return False  # not a valid move since the marble is blocked
@@ -396,11 +394,20 @@ class KubaGame:
 # game.get_current_turn() #returns 'PlayerB' because PlayerA has just played.
 # print(game.get_winner()) #returns None
 # print(game.make_move('PlayerA', (5,6), 'L'))
-# print(game.make_move('PlayerB', (0,6), 'L'))
+# print(game.make_move('PlayerB', (0,5), 'B'))
 # print(game.make_move('PlayerA', (5,5), 'L'))
-# print(game.make_move('PlayerB', (1,6), 'L'))
+# print(game.make_move('PlayerB', (1,5), 'B'))
 # print(game.make_move('PlayerA', (5,4), 'L'))
 # print(game.get_marble_count()) #returns (8,7,13)
+# print(game.make_move('PlayerB', (2,5), 'B'))
+# print(game.make_move('PlayerA', (5,3), 'L'))
+# print(game.make_move('PlayerB', (3,5), 'B'))
+# print(game.make_move('PlayerA', (5,2), 'L'))
+# print(game.make_move('PlayerB', (4,5), 'B'))
+# print(game.make_move('PlayerB', (3,5), 'B'))
+# print(game.get_marble_count()) #returns (8,7,13)
+# print(game.get_captured('PlayerA'))
+# print(game.get_captured('PlayerB'))
 # print(game.make_move('PlayerB', (4,0), 'L'))
 # print(game.make_move('PlayerA', (4,6), 'L'))
 # print(game.make_move('PlayerB', (3,0), 'L'))
