@@ -9,9 +9,9 @@ class KubaGame:
         containing each player's name and color, sets current turn to None, sets game winner to None, and sets
         each player's red marble captured count to 0"""
         self._player_a = player_a_tuple[0]  # assign the first value in the tuple to player a's name
-        self.player_a_color = player_a_tuple[1]  # assign the second value in the tuple to be player a's color
-        self.player_b = player_b_tuple[0]  # assign the first value in the tuple to player b's name
-        self.player_b_color = player_b_tuple[1]  # assign the second value in the tuple to be player b's color
+        self._player_a_color = player_a_tuple[1]  # assign the second value in the tuple to be player a's color
+        self._player_b = player_b_tuple[0]  # assign the first value in the tuple to player b's name
+        self._player_b_color = player_b_tuple[1]  # assign the second value in the tuple to be player b's color
         # initializes a 7x7 game board, top left corner is 0,0, bottom right is 6,6
         self._game_board = [['X'] * 7 for x in range(7)]  # 'X' represents no marble or an empty space
         self._game_board[0][0],  self._game_board[0][1],  \
@@ -43,7 +43,33 @@ class KubaGame:
         player wishes to move that marble. This method will check that moves are valid in accordance with the rules,
         then update the game board, check if the move resulted in a winner for the game, and then set
         the next turn to the other player"""
-        pass
+        if self._game_winner == None:
+            if validturnispossiblecode:
+                pass
+                if self._current_turn == playername:
+                    if coordinates[0] < 7 and coordinates[0] >= 0:  # if coordinates are on the game board
+                        if coordinates[1] < 7 and coordinates[1] >= 0: # if coordinates are on the game board
+                            x = coordinates[0]
+                            y = coordinates[1]
+                            player_color = self.get_player_color(playername)
+                            marble_being_moved = self.get_marble(coordinates)
+                            if player_color == marble_being_moved:  # if player is moving his own color marble
+                                if direction == "L":
+                                    pass
+                                if direction == "R":
+                                    pass
+                                if direction == "B":
+                                    pass
+                                if direction == "F":
+                                    pass
+                return False  # not the correct player's turn
+            return False  # valid turn is not possible
+        return False  # someone has already won the game
+
+
+
+
+
 
     def get_winner(self):
         """Returns the current status of the winner of the game"""
@@ -78,3 +104,10 @@ class KubaGame:
                 if self._game_board[x][y] == "R":  # if marble is red, increment red
                     R += 1
         return(W, B, R)  # returns the tuple of white, black, red marbles
+
+    def get_player_color(self, playername):
+        """Takes a player name and returns what color they are playing with"""
+        if self._player_a == playername:  # checks to see which player we are returning the value for
+            return self._player_a_color
+        else:
+            return self._player_b_color
