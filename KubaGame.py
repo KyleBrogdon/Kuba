@@ -390,13 +390,13 @@ class KubaGame:
         else:
             return self._player_b_color
 
-game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
+# game = KubaGame(('PlayerA', 'W'), ('PlayerB', 'B'))
 # print(game.get_marble_count()) #returns (8,8,13)
 # print(game.get_captured('PlayerA')) #returns 0
 # game.get_current_turn() #returns 'PlayerB' because PlayerA has just played.
 # game.get_winner() #returns None
 # game.make_move('PlayerA', (6,5), 'F')
-print(game.make_move('PlayerB', (1,6), 'F')) #Cannot make this move
+# print(game.make_move('PlayerB', (1,6), 'F')) #Cannot make this move
 # print(game.make_move('PlayerA', (6,5), 'F'))
 # print(game.make_move('PlayerB', (5,0), 'L'))
 # print(game.make_move('PlayerA', (5,6), 'L'))
