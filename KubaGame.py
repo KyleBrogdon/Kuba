@@ -206,9 +206,77 @@ class KubaGame:
         """Helper method that moves marbles backwards by taking the playername and coordinates passed to make_move"""
         pass
 
+
     def make_move_forwards(self, playername, coordinates):
         """Helper method that moves marbles forward by taking the playername and coordinates passed to make_move"""
-        pass
+        x_coord = coordinates[0]
+        y_coord = coordinates[1]
+        previous_board = []
+        if y_coord == 6 or self.get_marble((x_coord, y_coord + 1)) == "X":  # if marble is on the edge of the board or the space behind marble is empty
+            for y in range(0, 7):
+                temp_move = self.get_marble((x_coord, y))
+                previous_board.append(temp_move)
+            for i in range(y_coord, -1, -1):
+                if self.get_marble((i, y_coord)) == "X":
+                    proposed_move = list(previous_board)
+                    counter = 0
+                    increment = 1
+                    while counter + i < y_coord:
+                        proposed_move[i + counter] = proposed_move[i + increment]
+                        counter += 1
+                        increment += 1
+                    proposed_move[y_coord] = "X"
+                    if proposed_move == self._current_roworcolumn:  # violates Ko rule by checking if move would result in same board as last turn
+                        return False
+                    for a in range(0, 7):
+                        self._game_board[x_coord][a] = proposed_move[a]  # update values in that row
+                    self._current_roworcolumn = previous_board  # stores previous board to check for ko violation on future move
+                    if self._player_a == playername:  # set next turn to appropriate player
+                        if self.possible_moves_checker(self._player_b) is False:
+                            self._game_winner = self._player_a
+                        self._current_turn = self._player_b
+                        return
+                    else:
+                        if self.possible_moves_checker(self._player_a) is False:
+                            self._game_winner = self._player_b
+                        self._current_turn = self._player_a
+                        return
+                if i == 0:  # if there are marbles lined up till edge of the board and one will get pushed off by this move
+                    marble_getting_knocked_off = previous_board[0]
+                    if self.get_player_color(playername) == marble_getting_knocked_off:
+                        return False  # player cannot knock off their own marble
+                    proposed_move = list(previous_board)
+                    counter = 0
+                    increment = 1
+                    while counter + i < y_coord:
+                        proposed_move[i + counter] = proposed_move[i + increment]
+                        counter += 1
+                        increment += 1
+                    proposed_move[y_coord] = "X"
+                    for b in range(0, 7):
+                        self._game_board[x_coord][b] = proposed_move[b]
+                        self._current_roworcolumn = previous_board
+                    if self._player_a == playername:
+                        if marble_getting_knocked_off == "R":  # check if the marble is red and will score points
+                            self._player_a_captured += 1  # increment captured total
+                            if self._player_a_captured == 7:  # Check if player has won the game and set winner
+                                self._game_winner = self._player_a
+                            if self.possible_moves_checker(
+                                    self._player_b) is False:  # check if this move leaves opponent with no valid moves and set winner
+                                self._game_winner = self._player_a
+                            self._current_turn = self._player_b  # set turn to other player
+                            return
+                    else:
+                        if marble_getting_knocked_off == "R":  # check if the marble is red and will score points
+                            self._player_b_captured += 1  # increment captured total
+                            if self._player_b_captured == 7:  # Check if player has won the game and set winner
+                                self._game_winner = self._player_b
+                            if self.possible_moves_checker(
+                                    self._player_a) is False:  # check if this move leaves opponent with no valid moves and set winner
+                                self._game_winner = self._player_b
+                        self._current_turn = self._player_a  # set turn to other player
+                        return
+        return False  # not a valid move since the marble is blocked
 
     def possible_moves_checker(self, playername):
         """Helper method that checks if the opposing player can make any valid moves"""
