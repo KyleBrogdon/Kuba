@@ -1,6 +1,6 @@
 # Kyle Brogdon
 # 20 MAY 2021
-# Program that creates a KubaGame board, CS 162's final project
+# Program that creates a KubaGame board, CS 162's portfolio project
 
 class KubaGame:
     """Represents a Kuba game, played by two players"""
