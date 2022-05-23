@@ -5,7 +5,6 @@ from piece import Piece
 class Board:
     def __init__(self):
         self.board = []
-        self.selected_piece = None
         self.black_left = self.white_left = 8
         self.red_left = 13
         self.create_board()
@@ -45,6 +44,10 @@ class Board:
                 piece = self.board[row][col]
                 if piece != 0:
                     piece.draw(win)
+
+    def get_valid_moves(self, piece):
+        moves = {}
+
 
         # place white in lower right
         # place black in upper right
