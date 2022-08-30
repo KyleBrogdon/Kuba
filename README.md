@@ -17,7 +17,8 @@ These instructions will get you a copy of the project up and running on your loc
 - Run
 
 ## Running
-
+(WORK IN PROGRESS)
+Pygame GUI display, can move marbles, but game win conditions not implemented.
 
 ![alt-text](https://i.imgur.com/mhCcUob.png)
 
