@@ -19,7 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 ## Running
 
 
-[alt-text](https://i.imgur.com/mhCcUob.png)
+![alt-text](https://i.imgur.com/mhCcUob.png)
 
 ## Built With
 - Python
